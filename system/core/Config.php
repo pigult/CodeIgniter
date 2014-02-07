@@ -169,7 +169,7 @@ class CI_Config {
 	 * @param	string	the config item name
 	 * @param	string	the index name
 	 * @param	bool
-	 * @return	string
+	 * @return	string|array
 	 */
 	function item($item, $index = '')
 	{
@@ -251,13 +251,13 @@ class CI_Config {
 			return $this->slash_item('base_url').$this->item('index_page').'?'.$this->_uri_string($uri);
 		}
 	}
-	
+
 	// -------------------------------------------------------------
-	
+
 	/**
 	 * Base URL
 	 * Returns base_url [. uri_string]
-	 * 
+	 *
 	 * @access public
 	 * @param string $uri
 	 * @return string
@@ -266,12 +266,12 @@ class CI_Config {
 	{
 		return $this->slash_item('base_url').ltrim($this->_uri_string($uri),'/');
 	}
-	
+
 	// -------------------------------------------------------------
-	
+
 	/**
 	 * Build URI string for use in Config::site_url() and Config::base_url()
-	 * 
+	 *
 	 * @access protected
 	 * @param  $uri
 	 * @return string
@@ -305,7 +305,7 @@ class CI_Config {
 	}
 
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 * System URL
 	 *

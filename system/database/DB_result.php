@@ -79,12 +79,12 @@ class CI_DB_result {
 		while ($row = $this->_fetch_object())
 		{
 			$object = new $class_name();
-			
+
 			foreach ($row as $key => $value)
 			{
 				$object->$key = $value;
 			}
-			
+
 			$result_object[] = $object;
 		}
 
@@ -251,6 +251,9 @@ class CI_DB_result {
 	 * Returns a single result row - object version
 	 *
 	 * @access	public
+	 *
+	 * @param int $n
+	 *
 	 * @return	object
 	 */
 	function row_object($n = 0)

@@ -25,6 +25,8 @@
  * @category	Database
  * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/database/
+ *
+ * @method int insert_id()
  */
 class CI_DB_active_record extends CI_DB_driver {
 
@@ -58,7 +60,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	var $ar_cache_having		= array();
 	var $ar_cache_orderby		= array();
 	var $ar_cache_set			= array();
-	
+
 	var $ar_no_escape 			= array();
 	var $ar_cache_no_escape     = array();
 
@@ -70,7 +72,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 * Generates the SELECT portion of the query
 	 *
 	 * @param	string
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	public function select($select = '*', $escape = NULL)
 	{
@@ -251,7 +253,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 * Generates the FROM portion of the query
 	 *
 	 * @param	mixed	can be a string or array
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	public function from($from)
 	{
@@ -305,7 +307,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 * @param	string
 	 * @param	string	the join condition
 	 * @param	string	the type of join
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	public function join($table, $cond, $type = '')
 	{
@@ -359,7 +361,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @param	mixed
 	 * @param	mixed
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	public function where($key, $value = NULL, $escape = TRUE)
 	{
@@ -393,7 +395,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 * @param	mixed
 	 * @param	mixed
 	 * @param	string
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	protected function _where($key, $value = NULL, $type = 'AND ', $escape = NULL)
 	{
@@ -426,7 +428,7 @@ class CI_DB_active_record extends CI_DB_driver {
 
 					$v = ' '.$this->escape($v);
 				}
-				
+
 				if ( ! $this->_has_operator($k))
 				{
 					$k .= ' = ';
@@ -460,7 +462,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @param	string	The field to search
 	 * @param	array	The values searched on
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	public function where_in($key = NULL, $values = NULL)
 	{
@@ -494,7 +496,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @param	string	The field to search
 	 * @param	array	The values searched on
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	public function where_not_in($key = NULL, $values = NULL)
 	{
@@ -511,7 +513,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @param	string	The field to search
 	 * @param	array	The values searched on
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	public function or_where_not_in($key = NULL, $values = NULL)
 	{
@@ -576,7 +578,8 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @param	mixed
 	 * @param	mixed
-	 * @return	object
+	 * @param   string
+	 * @return	CI_DB_active_record
 	 */
 	public function like($field, $match = '', $side = 'both')
 	{
@@ -733,7 +736,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @param	string
 	 * @param	string
-	 * @return	object
+	 * @return	object CI_DB_active_record
 	 */
 	public function having($key, $value = '', $escape = TRUE)
 	{
@@ -811,7 +814,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @param	string
 	 * @param	string	direction: asc or desc
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	public function order_by($orderby, $direction = '')
 	{
@@ -866,7 +869,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @param	integer	the limit value
 	 * @param	integer	the offset value
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	public function limit($value, $offset = '')
 	{
@@ -902,7 +905,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 * @param	mixed
 	 * @param	string
 	 * @param	boolean
-	 * @return	object
+	 * @return	CI_DB_active_record
 	 */
 	public function set($key, $value = '', $escape = TRUE)
 	{
@@ -939,7 +942,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 * @param	string	the table
 	 * @param	string	the limit clause
 	 * @param	string	the offset clause
-	 * @return	object
+	 * @return	CI_DB_Result
 	 */
 	public function get($table = '', $limit = null, $offset = null)
 	{
@@ -1002,7 +1005,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 * @param	string	the where clause
 	 * @param	string	the limit clause
 	 * @param	string	the offset clause
-	 * @return	object
+	 * @return	CI_DB_Result
 	 */
 	public function get_where($table = '', $where = null, $limit = null, $offset = null)
 	{
@@ -1249,7 +1252,7 @@ class CI_DB_active_record extends CI_DB_driver {
 	 * @param	string	the table to retrieve the results from
 	 * @param	array	an associative array of update values
 	 * @param	mixed	the where clause
-	 * @return	object
+	 * @return	mixed|CI_DB_result
 	 */
 	public function update($table = '', $set = NULL, $where = NULL, $limit = NULL)
 	{

@@ -243,9 +243,11 @@ class CI_DB_driver {
 	 * will raise an error.
 	 *
 	 * @access	public
-	 * @param	string	An SQL query string
-	 * @param	array	An array of binding data
-	 * @return	mixed
+	 *
+	 * @param      array	An array of binding data
+	 * @param bool|array $binds
+	 * @param bool $return_object
+	 * @return	mixed|\CI_DB_Result
 	 */
 	function query($sql, $binds = FALSE, $return_object = TRUE)
 	{
@@ -1168,6 +1170,8 @@ class CI_DB_driver {
 		{
 			$message = ( ! is_array($error)) ? array(str_replace('%s', $swap, $LANG->line($error))) : $error;
 		}
+
+		throw new Exception(implode(' ', $message), 666);
 
 		// Find the most likely culprit of the error by going through
 		// the backtrace until the source file is no longer in the

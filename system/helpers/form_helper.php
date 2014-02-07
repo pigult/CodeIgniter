@@ -347,7 +347,10 @@ if ( ! function_exists('form_dropdown'))
 			}
 			else
 			{
-				$sel = (in_array($key, $selected)) ? ' selected="selected"' : '';
+				if($key!='')
+					$sel = (in_array($key, $selected)) ? ' selected="selected"' : '';
+				else
+					$sel = '';
 
 				$form .= '<option value="'.$key.'"'.$sel.'>'.(string) $val."</option>\n";
 			}

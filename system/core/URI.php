@@ -146,10 +146,10 @@ class CI_URI {
 	 * This function will detect the URI automatically and fix the query string
 	 * if necessary.
 	 *
-	 * @access	private
+	 * @access	protected
 	 * @return	string
 	 */
-	private function _detect_uri()
+	protected function _detect_uri()
 	{
 		if ( ! isset($_SERVER['REQUEST_URI']) OR ! isset($_SERVER['SCRIPT_NAME']))
 		{
@@ -203,10 +203,9 @@ class CI_URI {
 	 *
 	 * Take each command line argument and assume it is a URI segment.
 	 *
-	 * @access	private
 	 * @return	string
 	 */
-	private function _parse_cli_args()
+	protected function _parse_cli_args()
 	{
 		$args = array_slice($_SERVER['argv'], 1);
 
