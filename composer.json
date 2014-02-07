@@ -1,0 +1,15 @@
+{
+	"name": "pigu/codeigniter",
+	"description": "Application Development Framework",
+	"minimum-stability": "stable",
+	"license": "proprietary",
+	"authors": [
+		{
+			"name": "Donatas Aleksandravičius",
+			"email": "donatas.aleksandravicius@pigu.lt"
+		}
+	],
+	"autoload": {
+		"classmap": [ "system/" ]
+	}
+}
