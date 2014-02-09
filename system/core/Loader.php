@@ -149,7 +149,7 @@ class CI_Loader {
 		$this->_ci_models = array();
 		$this->_base_classes =& is_loaded();
 
-		$this->_ci_autoloader();
+		$this->ci_autoloader();
 
 		return $this;
 	}
@@ -1023,22 +1023,22 @@ class CI_Loader {
 					// first, global next
 					if (defined('ENVIRONMENT') AND file_exists($path .'config/'.ENVIRONMENT.'/'.strtolower($class).'.php'))
 					{
-						include($path .'config/'.ENVIRONMENT.'/'.strtolower($class).'.php');
+						include_once($path .'config/'.ENVIRONMENT.'/'.strtolower($class).'.php');
 						break;
 					}
 					elseif (defined('ENVIRONMENT') AND file_exists($path .'config/'.ENVIRONMENT.'/'.ucfirst(strtolower($class)).'.php'))
 					{
-						include($path .'config/'.ENVIRONMENT.'/'.ucfirst(strtolower($class)).'.php');
+						include_once($path .'config/'.ENVIRONMENT.'/'.ucfirst(strtolower($class)).'.php');
 						break;
 					}
 					elseif (file_exists($path .'config/'.strtolower($class).'.php'))
 					{
-						include($path .'config/'.strtolower($class).'.php');
+						include_once($path .'config/'.strtolower($class).'.php');
 						break;
 					}
 					elseif (file_exists($path .'config/'.ucfirst(strtolower($class)).'.php'))
 					{
-						include($path .'config/'.ucfirst(strtolower($class)).'.php');
+						include_once($path .'config/'.ucfirst(strtolower($class)).'.php');
 						break;
 					}
 				}
@@ -1111,15 +1111,15 @@ class CI_Loader {
 	 * @param	array
 	 * @return	void
 	 */
-	private function _ci_autoloader()
+	public function ci_autoloader()
 	{
 		if (defined('ENVIRONMENT') AND file_exists(APPPATH.'config/'.ENVIRONMENT.'/autoload.php'))
 		{
-			include(APPPATH.'config/'.ENVIRONMENT.'/autoload.php');
+			include_once(APPPATH.'config/'.ENVIRONMENT.'/autoload.php');
 		}
 		else
 		{
-			include(APPPATH.'config/autoload.php');
+			include_once(APPPATH.'config/autoload.php');
 		}
 
 		if ( ! isset($autoload))
